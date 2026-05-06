@@ -1,0 +1,3 @@
+project_id = "project-b71fcc45-92e4-49dd-817"
+region     = "us-central1"
+zone       = "us-central1-a"
