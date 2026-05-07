@@ -54,3 +54,4 @@ variable "tags" {
   description = "Network tags for the instance"
   default     = []
 }
+
