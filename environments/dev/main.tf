@@ -25,6 +25,13 @@ module "load_balancer" {
   project_id = var.project_id
 }
 
+module "dns" {
+  source = "../../modules/dns"
+  domain_name = var.domain_name
+  dns_name = var.dns_name
+  load_balancer_ip = module.load_balancer.ip_address
+}
+
 output "vpc_id" {
   value       = module.network.vpc_id
   description = "VPC ID"
@@ -48,4 +55,9 @@ output "instance_name" {
 output "instance_group" {
   value = module.mig_compute.instance_group
   description = "MIG name"
+}
+
+output "load_balancer_ip" {
+  value = module.load_balancer.ip_address
+  description = "Load balancer IP address"
 }
