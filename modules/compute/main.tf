@@ -16,6 +16,9 @@ resource "google_compute_instance" "vm" {
 
   network_interface {
     subnetwork = var.subnet
+    access_config {
+      
+    }
   }
 
   // Minimal service account usage.
@@ -29,5 +32,20 @@ resource "google_compute_instance" "vm" {
     ssh-keys = var.ssh_public_key
   }
 
-  tags = var.tags
+  metadata_startup_script = <<-EOF
+#!/bin/bash
+
+apt-get update
+apt-get install -y nginx
+
+cat <<HTML > /var/www/html/index.html
+<h1>Terraform GCP DevOps Project</h1>
+<p>Served from $(hostname)</p>
+HTML
+
+systemctl enable nginx
+systemctl restart nginx
+EOF
+
+  tags = concat(var.tags, ["web-server"])
 }
