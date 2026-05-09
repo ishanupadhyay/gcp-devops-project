@@ -21,7 +21,7 @@ module "mig_compute" {
 
 module "load_balancer" {
   source = "../../modules/load-balancer"
-  instance_group = module.mig.instance_group
+  instance_group = module.mig_compute.instance_group
   project_id = var.project_id
 }
 
