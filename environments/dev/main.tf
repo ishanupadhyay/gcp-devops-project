@@ -12,6 +12,13 @@ module "compute" {
   subnet  = module.network.subnet_id
 }
 
+module "mig_compute" {
+  source       = "../../modules/mig-compute"
+  region       = var.region
+  network      = module.network.vpc_id
+  subnet       = module.network.subnet_id
+}
+
 output "vpc_id" {
   value       = module.network.vpc_id
   description = "VPC ID"
