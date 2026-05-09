@@ -20,7 +20,3 @@ variable "domain_name" {
 variable "dns_name" {
   type = string
 }
-
-variable "load_balancer_ip" {
-  type = string
-}
