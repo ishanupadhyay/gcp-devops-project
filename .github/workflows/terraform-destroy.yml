@@ -2,7 +2,7 @@ name: Terraform GCP
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "remove-resources" ]
 
 permissions:
   id-token: write
@@ -32,8 +32,5 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
-      - name: Terraform Plan
-        run: terraform plan
-
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
+      - name: Terraform Destroy
+        run: terraform destroy --auto-approve
