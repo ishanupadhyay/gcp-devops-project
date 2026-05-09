@@ -1,4 +1,7 @@
-output "name" {
-  description = "MIG Name"
-  value = google_compute_instance_template.template.name
+output "instance_group" {
+  value = google_compute_region_instance_group_manager.mig.instance_group
+}
+
+output "mig_name" {
+  value = google_compute_region_instance_group_manager.mig.name
 }

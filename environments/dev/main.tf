@@ -19,6 +19,12 @@ module "mig_compute" {
   subnet       = module.network.subnet_id
 }
 
+module "load_balancer" {
+  source = "../../modules/load-balancer"
+  instance_group = module.mig.instance_group
+  project_id = var.project_id
+}
+
 output "vpc_id" {
   value       = module.network.vpc_id
   description = "VPC ID"
@@ -37,4 +43,9 @@ output "instance_id" {
 output "instance_name" {
   value       = module.compute.instance_name
   description = "Compute instance name"
+}
+
+output "instance_group" {
+  value = module.mig_compute.instance_group
+  description = "MIG name"
 }
